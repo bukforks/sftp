@@ -1,10 +1,10 @@
 IPADDRESS = ${NODE_IP}
 
 delete:
-	k delete -f deployment.yaml
+	kubectl delete -f deployment.yaml
 
 deploy:
-	k create -f deployment.yaml; \
+	kubectl create -f deployment.yaml
 
 new: delete deploy
 
