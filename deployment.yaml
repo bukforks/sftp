@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
+    - port: 22
   selector:
     app: "test-sftp"
 ---
@@ -23,7 +23,7 @@ spec:
   initContainers:
     - name: alpine
       image: alpine
-      command: ["/bin/sh", "-c", "addgroup -g 555 test && adduser -D -u 555 -G test test && chown -R 555:555 /var/www/html"]
+      command: ["/bin/sh", "-c", "adduser -D -u 555 test && chown -R 555:555 /var/www/html"]
       volumeMounts:
         - mountPath: /var/www/html
           name: sftp
@@ -33,13 +33,13 @@ spec:
       image: quay.io/wp-env/sftp:latest
       imagePullPolicy: Always
       ports:
-        - containerPort: 8080
+        - containerPort: 22
       volumeMounts:
-        - mountPath: /var/www/html
+        - mountPath: /home/test
           name: sftp
       args:
         - test:test:555
 
     - name: openssh
       image: alpine
-      command: ["/bin/sh", "-c", "apk add openssh sshpass && time sleep 2 && sshpass -p 'test' sftp -P 8080 -oStrictHostKeyChecking=no test@localhost && sleep infinite"]
+      command: ["/bin/sh", "-c", "apk add openssh sshpass && time sleep 2 && sshpass -p 'test' sftp -oStrictHostKeyChecking=no test@localhost && sleep infinite"]
