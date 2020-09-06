@@ -14,7 +14,7 @@ kind: Pod
 metadata:
   name: "test-sftp"
   labels:
-    sftp: "test-sftp"
+    app: "test-sftp"
 spec:
   volumes:
     - name: sftp

@@ -20,13 +20,13 @@ test: run
 	sleep 1;\
 	docker run --name=sftp-test1 --rm --net=host \
 	openssh \
-	/bin/sh -c 'test | sshpass -p 'test' sftp -P 8080 -oStrictHostKeyChecking=no test@localhost' || true ; \
+	/bin/sh -c 'test | sshpass -p 'test' sftp -oStrictHostKeyChecking=no test@localhost' || true ; \
 	docker rm -f sftp-test sftp-test1 || true
 
 
 run:
 	docker build --tag=test .; \
-	docker run --name=sftp-test --rm -p 8080:8080 -d test test:test
+	docker run --name=sftp-test --rm -p 22:22 -d test test:test
 
 rm:
 	docker rm -f sftp-test sftp-test1 || true

@@ -19,7 +19,7 @@ ForceCommand internal-sftp
 ChrootDirectory %h
 
 # Enable this for more logs
-LogLevel VERBOSE
+#LogLevel VERBOSE
 
 # ??
 #AllowTcpForwarding yes
@@ -27,4 +27,4 @@ LogLevel VERBOSE
 #GatewayPorts yes
 #PermitTunnel yes
 #AddressFamily inet
-ListenAddress 0.0.0.0:8080
+#ListenAddress 0.0.0.0:8080
