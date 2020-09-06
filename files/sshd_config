@@ -20,6 +20,3 @@ ChrootDirectory %h
 
 # Enable this for more logs
 #LogLevel VERBOSE
-
-# change default port
-ListenAddress 0.0.0.0:8081
