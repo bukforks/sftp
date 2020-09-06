@@ -6,11 +6,14 @@ delete:
 create:
 	kubectl create -f deployment.yaml
 
+nodeport:
+	kubectl get svc test-sftp -o jsonpath='{.spec.ports[0].nodePort}'
+
 connect:
 	docker run --rm -it \
 	-e IPADDRESS=${IPADDRESS} \
 	openssh \
- 	/bin/sh -c 'test | sshpass -p 'test' sftp -oStrictHostKeyChecking=no -P $(shell kubectl get svc demo-nodeport -o jsonpath='{.spec.ports[0].nodePort}') test@$$IPADDRESS'
+ 	/bin/sh -c 'test | sshpass -p 'test' sftp -oStrictHostKeyChecking=no -P $(shell kubectl get svc test-sftp -o jsonpath='{.spec.ports[0].nodePort}') test@$$IPADDRESS'
 
 .PHONY:test
 test: run
