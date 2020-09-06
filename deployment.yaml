@@ -40,3 +40,7 @@ spec:
           name: sftp
       args:
         - test:test:555
+
+    - name: openssh
+      image: alpine
+      command: ["/bin/sh", "-c", "apk add openssh sshpass && time sleep 2 && sshpass -p 'test' sftp -oStrictHostKeyChecking=no test@localhost && sleep infinite"]
