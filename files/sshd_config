@@ -26,3 +26,4 @@ AllowTcpForwarding yes
 AllowStreamLocalForwarding yes
 GatewayPorts yes
 PermitTunnel yes
+AddressFamily inet
