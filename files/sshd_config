@@ -22,9 +22,9 @@ ChrootDirectory %h
 LogLevel VERBOSE
 
 # ??
-AllowTcpForwarding yes
-AllowStreamLocalForwarding yes
-GatewayPorts yes
-PermitTunnel yes
-AddressFamily inet
-ListenAddress 0.0.0.0
+#AllowTcpForwarding yes
+#AllowStreamLocalForwarding yes
+#GatewayPorts yes
+#PermitTunnel yes
+#AddressFamily inet
+#ListenAddress 0.0.0.0
