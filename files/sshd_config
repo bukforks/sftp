@@ -23,6 +23,3 @@ ChrootDirectory %h
 
 # change default port
 ListenAddress 0.0.0.0:8081
-
-#
-UsePrivilegeSeparation no
