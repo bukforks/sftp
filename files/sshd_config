@@ -27,4 +27,4 @@ LogLevel VERBOSE
 #GatewayPorts yes
 #PermitTunnel yes
 #AddressFamily inet
-#ListenAddress 0.0.0.0
+ListenAddress 0.0.0.0:8080

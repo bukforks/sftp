@@ -5,8 +5,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 22
-      targetPort: 22
+    - port: 8080
   selector:
     app: "test-sftp"
 ---
@@ -34,7 +33,7 @@ spec:
       image: quay.io/wp-env/sftp:latest
       imagePullPolicy: Always
       ports:
-        - containerPort: 22
+        - containerPort: 8080
       volumeMounts:
         - mountPath: /var/www/html
           name: sftp
@@ -43,4 +42,4 @@ spec:
 
     - name: openssh
       image: alpine
-      command: ["/bin/sh", "-c", "apk add openssh sshpass && time sleep 2 && sshpass -p 'test' sftp -oStrictHostKeyChecking=no test@localhost && sleep infinite"]
+      command: ["/bin/sh", "-c", "apk add openssh sshpass && time sleep 2 && sshpass -p 'test' sftp -P 8080 -oStrictHostKeyChecking=no test@localhost && sleep infinite"]
