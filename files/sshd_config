@@ -20,3 +20,9 @@ ChrootDirectory %h
 
 # Enable this for more logs
 LogLevel VERBOSE
+
+# ??
+AllowTcpForwarding yes
+AllowStreamLocalForwarding yes
+GatewayPorts yes
+PermitTunnel yes
