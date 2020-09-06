@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "test-sftp"
+spec:
+  type: NodePort
+  ports:
+    - port: 22
+      targetPort: 22
+  selector:
+    app: "test-sftp"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "test-sftp"
+  labels:
+    sftp: "test-sftp"
+spec:
+  volumes:
+    - name: sftp
+      emptyDir: {}
+
+  initContainers:
+    - name: alpine
+      image: alpine
+      command: ["/bin/sh", "-c", "addgroup -g 555 test && adduser -D -u 555 -G test test && chown -R 555:555 /var/www/html"]
+      volumeMounts:
+        - mountPath: /var/www/html
+          name: sftp
+
+  containers:
+    - name: sftp
+      image: quay.io/wp-env/sftp:latest
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 22
+      volumeMounts:
+        - mountPath: /var/www/html
+          name: sftp
+      args:
+        - test:test:555

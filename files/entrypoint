@@ -92,7 +92,7 @@ fi
 
 if $startSshd; then
     log "Executing sshd"
-    exec /usr/sbin/sshd -D -e -d -E /var/log/sshd.log
+    exec /usr/sbin/sshd -D -e -d -d -d -E /var/log/sshd.log
 else
     log "Executing $*"
     exec "$@"
